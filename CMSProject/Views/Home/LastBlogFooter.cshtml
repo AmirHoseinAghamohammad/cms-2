@@ -1,0 +1,13 @@
+﻿@model IEnumerable<DataLayer.Blog>
+<div class="widget-content">
+    @foreach (var item in Model)
+    {
+        <div class="post">
+            <div class="thumb"><a href="/Blog/@item.BlogID"><img src="~/Images/@item.ImageName" alt="@item.Title" style="width:80px;height:80px;"></a></div>
+            <h6><a href="/Blog/@item.BlogID">@item.Title</a></h6>
+            <span class="date">@item.CreateDate.ToShamsi()</span>
+        </div>
+    }
+
+
+</div>

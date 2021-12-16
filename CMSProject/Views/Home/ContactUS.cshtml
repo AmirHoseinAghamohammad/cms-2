@@ -1,0 +1,27 @@
+﻿@model IEnumerable<DataLayer.ContactUs>
+<div class="footer-column col-lg-6 col-md-6 col-sm-12">
+    <div class="footer-widget contact-widget">
+        <h5>تماس با ما </h5>
+        @foreach (var item in Model)
+        {
+            <ul>
+                <li>
+                    <span class="icon flaticon-placeholder-2"></span>
+                    <strong>آدرس </strong>
+                    @item.Location
+                </li>
+                <li>
+                    <span class="icon flaticon-phone-call"></span>
+                    <strong>تلفن </strong>
+                    <a href="tel:@item.PhoneNumber">@item.PhoneNumber</a>
+                </li>
+                <li>
+                    <span class="icon flaticon-email-1"></span>
+                    <strong>ایمیل </strong>
+                    <a href="mailto:@item.Email">@item.Email</a>
+                </li>
+            </ul>
+        }
+
+    </div>
+</div>

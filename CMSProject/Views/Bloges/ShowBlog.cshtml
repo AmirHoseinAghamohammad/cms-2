@@ -1,0 +1,249 @@
+﻿@model DataLayer.Blog
+@{
+    ViewBag.Title = "ShowBlog";
+}
+
+<!--Page Title-->
+<section class="page-title">
+    <div class="pattern-layer-one" style="background-image:url(/Content/images/background/pattern-16.png)"></div>
+    <div class="auto-container">
+        <h2>آپدیت های اخیر </h2>
+        <ul class="page-breadcrumb">
+            <li><a href="/">صفحه اصلی </a></li>
+            <li>بروز رسانی های جدید </li>
+        </ul>
+    </div>
+</section>
+<!--End Page Title-->
+<!-- Sidebar Page Container -->
+<div class="sidebar-page-container">
+    <div class="auto-container">
+        <div class="row clearfix">
+
+            <!-- Content Side -->
+            <div class="content-side col-lg-8 col-md-12 col-sm-12">
+                <div class="news-detail">
+                    <div class="inner-box">
+                        <div class="upper-box">
+                            <h3>@Model.Title</h3>
+                            <ul class="post-meta">
+                                <li><span class="icon flaticon-comment"></span>تعداد 3 نظر </li>
+
+                                <li><span class="icon flaticon-user"></span>ادمین </li>
+                                <li>تاریخ:<span>@Model.CreateDate.ToShamsi()</span></li>
+                            </ul>
+                        </div>
+                        <div class="image">
+                            <img src="~/Images/@Model.ImageName" alt="@Model.Title" style="width:770px;height:370px;" />
+
+                        </div>
+
+                        <div class="lower-content">
+
+                            <blockquote>
+                                <div class="blockquote-inner">
+                                    <span class="quote-icon flaticon-quotation-mark"></span>
+                                    @Model.ShortDiscription
+                                </div>
+                            </blockquote>
+                            <p>
+                                @Html.Raw(Model.BlogText)
+                            </p>
+
+                            <!-- Post Share Options-->
+                            <div class="post-share-options">
+                                <div class="post-share-inner clearfix">
+                                    <div class="pull-left tags">
+
+                                        @foreach (var item in Model.Tags.Split(','))
+                                        {
+                                            <a href="/Seachr?q=@item">@item </a>
+                                        }
+
+                                    </div>
+                                    <ul class="social-box pull-right">
+                                        <li class="share">این اعلان را به اشتراک گذارید :</li>
+                                        <li><a href="#"><span class="fa fa-facebook-f"></span></a></li>
+                                        <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+                                        <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
+                                        <li><a href="#"><span class="fa fa-pinterest-p"></span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="comments-area">
+                        <div class="group-title">
+                            <h3>@Model.BlogComments.Count() نظرات </h3>
+                        </div>
+
+                        @Html.Action("ShowComment", "Bloges")
+
+                    </div>
+
+                    <!-- Comment Form -->
+                    <div class="comment-form">
+
+                        <div class="group-title"><h3>ارسال یک پیام </h3></div>
+
+                        <!--Comment Form-->
+                        <form method="post" action="https://expert-themes.com/html/globex/blog.html">
+                            <div class="row clearfix">
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                    <input type="text" name="name" placeholder="نام کامل" required="" id="txtname">
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                    <input type="email" name="email" placeholder="ایمیل" required="" id="txtemail">
+                                </div>
+
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                    <textarea class="darma" name="comment" placeholder="پیام شما" id="txtcomment"></textarea>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                    <button class="theme-btn btn-style-three" type="button" name="submit-form" onclick="addcomment()"><span class="txt">ارسال نظر </span></button>
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <!-- Sidebar Side -->
+            <div class="sidebar-side left-sidebar col-lg-4 col-md-12 col-sm-12">
+                <aside class="sidebar sticky-top">
+                    <div class="sidebar-inner">
+
+                        <!-- Search -->
+                        <div class="sidebar-widget search-box">
+                            <div class="sidebar-title">
+                                <h5>جستجو : -</h5>
+                            </div>
+                            <form method="post" action="/Seachr">
+                                <div class="form-group">
+                                    <input type="search" name="q" value="" placeholder="جستجو ... " required>
+                                    <button type="submit"><span class="icon fa fa-search"></span></button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Categories Widget -->
+                        @*<div class="sidebar-widget categories-widget">
+                                <div class="sidebar-title">
+                                    <h5>دسته بندی: -</h5>
+                                </div>
+                                <div class="widget-content">
+                                    <ul class="blog-cat">
+                                        <li><a href="#">مشاوره <span>( 05 )</span></a></li>
+                                        <li><a href="#">داده های سایبری <span>( 23 )</span></a></li>
+                                        <li><a href="#">طراحی  <span>( 22 )</span></a></li>
+                                        <li><a href="#">دیجیتال <span>( 15 )</span></a></li>
+                                        <li><a href="#">مارکتینگ <span>( 36 )</span></a></li>
+                                        <li><a href="#">امنیت <span>( 48 )</span></a></li>
+                                        <li><a href="#">UI/UX طراحی  <span>( 06 )</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>*@
+
+                        <!-- Categories Widget -->
+                        @Html.Action("LeftlastNews", "Bloges")
+
+                        <!-- Popular Posts -->
+                        @*<div class="sidebar-widget popular-tags">
+                                <div class="sidebar-title">
+                                    <h5>برچسب ها : -</h5>
+                                </div>
+                                <div class="widget-content">
+                                    <a href="#">شرکتی </a>
+                                    <a href="#">مشتری </a>
+                                    <a href="#">سایبر </a>
+                                    <a href="#">داده </a>
+                                    <a href="#">طراحی </a>
+                                    <a href="#">خدمات اطلاعاتی  </a>
+                                    <a href="#">مارکتینگ </a>
+                                    <a href="#">موضوع </a>
+                                    <a href="#">عملیاتی </a>
+                                </div>
+                            </div>*@
+
+                        <!-- Instagram Widget -->
+                        @*<div class="sidebar-widget instagram-widget">
+                                <div class="sidebar-title">
+                                    <h5>اینستاگرام : -</h5>
+                                </div>
+                                <div class="widget-content">
+                                    <div class="clearfix">
+                                        <figure class="post-thumb"><img src="/Content/images/resource/instagram-1.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
+                                        <figure class="post-thumb"><img src="/Content/images/resource/instagram-2.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
+                                        <figure class="post-thumb"><img src="/Content/images/resource/instagram-3.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
+                                        <figure class="post-thumb"><img src="/Content/images/resource/instagram-4.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
+                                        <figure class="post-thumb"><img src="/Content/images/resource/instagram-5.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
+                                        <figure class="post-thumb"><img src="/Content/images/resource/instagram-6.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
+                                        <figure class="post-thumb"><img src="/Content/images/resource/instagram-7.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
+                                        <figure class="post-thumb"><img src="/Content/images/resource/instagram-8.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
+                                        <figure class="post-thumb"><img src="/Content/images/resource/instagram-9.jpg" alt=""><a href="news-detail.html" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
+                                    </div>
+                                </div>
+                            </div>*@
+
+                        <!-- Archives Widget -->
+                        @*<div class="sidebar-widget archives-widget">
+                                <div class="sidebar-title">
+                                    <h5>آرشیو : -</h5>
+                                </div>
+                                <ul class="archive-list">
+                                    <li><a href="#">فروردین 1400</a></li>
+                                    <li><a href="#">اردیبهشت 1400</a></li>
+                                    <li><a href="#">خرداد 1400</a></li>
+                                    <li><a href="#">تیر 1400</a></li>
+                                </ul>
+                            </div>*@
+
+                    </div>
+                </aside>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+
+<script>
+
+    function addcomment() {
+        $.ajax({
+            url: "/Bloges/AddComment/" +@Model.BlogID,
+            type: "Get",
+            data: { name: $("#txtname").val(), email: $("#txtemail").val(), comment: $("#txtcomment").val() },
+            success: function (data) {
+                location.href = location.href,
+                    alert('کاربر گرامی از ثبت نظر شما سپاسگزاریم');
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                var myobj = json.parse(xhr.responseText);
+                alert('متاسفانه ثبت نظر شما با خطا مواجه شد');
+            }
+
+        }).done(function () {
+            /*$("#commentlist").html(result),*/
+                $("#txtname").val("");
+            $("#txtemail").val("");
+            $("#txtcomment").val("");
+        });
+    }
+</script>
+
+

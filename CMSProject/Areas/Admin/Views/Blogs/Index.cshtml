@@ -1,0 +1,65 @@
+﻿@model IEnumerable<DataLayer.Blog>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create",null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th >
+            @Html.DisplayNameFor(model => model.ImageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BlogGroup.GroupTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShortDiscription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Visit)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="/Images/@item.ImageName" class="thumbnail" style="width:100px;height:100px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BlogGroup.GroupTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShortDiscription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Visit)
+            </td >
+
+            <td>
+                @item.CreateDate.ToShamsi()
+            </td>
+            <td>
+                @Html.ActionLink("ویرایش", "Edit", new { id = item.BlogID }, new { @class = "btn btn-warning" }) 
+                @Html.ActionLink("حذف", "Delete", new { id = item.BlogID }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>

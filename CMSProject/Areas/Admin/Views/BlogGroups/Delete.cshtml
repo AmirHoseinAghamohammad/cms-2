@@ -1,0 +1,30 @@
+﻿@model DataLayer.BlogGroup
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+
+<h3>آیا از حذف @Model.GroupTitle مطمین هستید؟</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GroupTitle)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        @*@Html.HiddenFor(x=>x.GroupID);*@
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-danger" /> 
+        </div>
+    }
+</div>
