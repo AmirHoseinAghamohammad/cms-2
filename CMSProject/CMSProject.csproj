@@ -1801,7 +1801,6 @@
     <Content Include="Content\fonts\fontawesome-webfonte0a5.ttf" />
     <Content Include="Content\fonts\fontawesome-webfonte0a5.woff" />
     <Content Include="Content\fonts\fontawesome-webfonte0a5.woff2" />
-    <Content Include="Areas\Admin\Views\BlogComments\Create.cshtml" />
     <Content Include="Areas\Admin\Views\BlogComments\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\BlogComments\Index.cshtml" />
     <Content Include="ckeditor\.htaccess" />
